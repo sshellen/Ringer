@@ -1,0 +1,357 @@
+body{margin:0;padding:0;background-color: #b5d55a;}
+.app{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-flow: row nowrap;
+}
+.gutter1, .gutter2{
+    flex:1 1 auto;
+    position: relative;
+}
+.ringerGame{flex:0 0 550px;position: absolute;top:calc(50% - 380px);left:calc(50% - 275px);width:550px; height:760px;}
+
+#gameBoard, #ringerRules{z-index: 10;width:550px; height:760px;border: 1px solid #4e6ea9;}
+.cls-1{fill:url(#radial-gradient);}
+.cls-2{fill:#ed1c24;}.cls-3{fill:#6ec38c;}
+.cls-4{fill:#4e6ea9;}
+.cls-25, .cls-26, .cls-5{fill:#e8d333;}
+.cls-30{fill:#e8d333;}
+.cls-5{stroke:#c1ac30;}
+.cls-15,.cls-18,.cls-20,.cls-21,.cls-22,.cls-27,.cls-28,.cls-29,.cls-5,.cls-7,.cls-8{stroke-miterlimit:10;}
+.cls-18,.cls-21,.cls-5,.cls-7, .cls-8{stroke-width:2px;}
+.cls-6{fill:#414042;}
+.cls-18,.cls-20,.cls-28,.cls-7{fill:none;}
+.cls-7{stroke:#6d6e71;}.cls-8{fill:#e6e7e8;}
+.cls-21,.cls-8{stroke:#666766;}
+.cls-9{fill:#020202;}
+.cls-28{stroke-width:8px;}
+
+.cls-15,.cls-28,.cls-29{stroke:#009444;}
+.cls-15{fill:url(#radial-gradient-2);}
+
+.cls-21{fill:#c6c6c5;}
+.cls-22{stroke:#19689e;fill:url(#linear-gradient-2);}
+.cls-23{fill:#231f20;}
+.cls-24{fill:url(#linear-gradient-2);}
+.cls-27{fill:#eee;stroke:#81bbe6;}
+.cls-29{fill:#09572c;}
+
+#arrow. cls-1{fill:url(#linear-gradient);}
+#arrow .cls-2{opacity:0.6;}
+#arrow .cls-3,#arrow .cls-5{fill:none;stroke: #a97c50;stroke-miterlimit:10;}
+#arrow .cls-3{stroke-width:2px;}
+#arrow.unLoaded .cls-4{fill:#a97c50;}
+#arrow.loaded .cls-4{fill:#d39822;}
+#r1c*{
+    position: absolute;
+}
+
+@keyframes clockwise {
+    0% {
+        transform:  rotate(0deg);
+    }
+    100% {
+        transform:  rotate(360deg);
+    }
+}
+
+@keyframes counterClockwise{
+    0% {
+        transform:  rotate(360deg);
+    }
+    100% {
+        transform:  rotate(0deg);
+    }
+}
+.cup {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    overflow:hidden;
+}
+.cup#r1c1, .cup#r2c1,.cup#r3c1,.cup#r4c1,.cup#r5c1{
+    top: 0;
+    left: 50%;
+}
+.cup#r1c2, .cup#r2c2,.cup#r3c2, .cup#r4c2,.cup#r5c2{
+    top: 50%;
+    left: 100%;
+}
+.cup#r1c3,.cup#r2c3,.cup#r3c3,.cup#r4c3,.cup#r5c3{
+    bottom:0;
+    left: 50%;
+}
+.cup#r1c4,.cup#r2c4,.cup#r3c4,.cup#r4c4,.cup#r5c4{
+    left: 0;
+    top: 50%;
+}
+.cup#r1c1,.cup#r2c1,.cup#r3c1,.cup#r4c1,.cup#r5c1{
+    margin-top: -5px;
+}
+.cup#r1c2,.cup#r2c2,.cup#r3c2,.cup#r4c2,.cup#r5c2{
+    margin-left: -15px;
+}
+.cup#r1c3,.cup#r2c3,.cup#r3c3,.cup#r4c3,.cup#r5c3{
+    margin-bottom: -10px;
+}
+.cup#r1c4,.cup#r2c4,.cup#r3c4,.cup#r4c4,.cup#r5c4{
+    margin-left: -5px;
+}
+
+#ring1,#ring2,#ring3,#ring4,#ring5{
+    position: absolute;
+    transform-box:fill-box;
+    transform-origin: center;
+    animation-play-state: inherit;
+}
+
+#ring1{
+    width: 481px;
+    height: 481px;
+    top: 109px;
+    left: 39px;
+    animation: 20.0s linear infinite clockwise;
+    background: no-repeat center/100% url("../svg/ring1.svg");
+}
+#ring2{
+    width: 430px;
+    height: 430px;
+    top: 134px;
+    left:65px;
+    animation: 10.0s linear infinite counterClockwise;
+    background: no-repeat center/100% url("../svg/ring2.svg");
+}
+#ring3{
+    width: 384px;
+    height: 384px;
+    top: 157px;
+    left:88px;
+    animation: 25.0s linear infinite clockwise;
+    background: no-repeat center/100% url("../svg/ring3.svg");
+}
+#ring4{
+    width: 333px;
+    height: 333px;
+    top: 183px;
+    left:113px;
+    animation: 15.0s linear infinite counterClockwise;
+    background: no-repeat center/100% url("../svg/ring4.svg");
+}
+#ring5{
+    width: 280px;
+    height: 280px;
+    top: 210px;
+    left:138px;
+    animation: 10.0s linear infinite clockwise;
+    background: no-repeat center/100% url("../svg/ring5.svg");
+}
+
+.empty{
+    width:20px;
+    height: 20px;
+}
+
+.bomb{
+    position: absolute;
+    z-index: 100;
+    overflow: hidden;
+    width: 25px;
+}
+.bomb.explode{
+
+    animation: moveX 200ms linear forwards;
+}
+@keyframes moveX{
+    from{margin-left:0px;}
+    to{margin-left:-50px;}
+}
+.pie{
+    position: absolute;
+    z-index: 100;
+    width: 30px;
+}
+.ringerBig, .ringer{
+    position: absolute;
+    width: 25px;
+    z-index: 100;
+}
+.ringerBig{
+    width: 30px;
+}
+#dropper {
+    position: absolute;
+    width: 90px;
+    left: 230px;
+    top: 0;
+    z-index: 200;
+    background: url("../svg/dropper.svg");
+}
+#arrow, #switchSide{
+    cursor: pointer;
+}
+#rightPaddle,#leftPaddle,#topPaddle,#bottomPaddle,#switchButton{
+    cursor: pointer;
+}
+
+.leftScoreRinger{
+    position: absolute;
+    left: 170px;
+    top: 340px;
+    width: 25px;
+    display: none;
+}
+.rightScoreRinger{
+    position: absolute;
+    left: 365px;
+    top: 340px;
+    width: 25px;
+    display:none;
+}
+
+.slideLeft{
+    animation-duration: 1s;
+    animation-name: slideLeft;
+    animation-iteration-count: 1;
+}
+
+@keyframes slideLeft {
+    from {
+        left: 365px;
+        width: 25px;
+    }
+
+    to {
+        left: 275px;
+        width: 10px;
+    }
+}
+
+.slideRight{
+    animation-duration: 1s;
+    animation-name: slideRight;
+    animation-iteration-count: 1;
+}
+
+@keyframes slideRight {
+    from {
+        left: 170px;
+        width: 25px;
+    }
+
+    to {
+        left: 275px;
+        width: 10px;
+    }
+}
+
+.score{
+    width: 70px;
+    margin-left: 15px;
+}
+.scoreBoard{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    align-items: stretch;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+}
+.scoreBoard .scoreBox{
+    flex:0 0 auto;
+    margin-left: 10px;
+    height: 20px;
+    width: 130px;
+    border: 2px solid #81bbe6;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    padding: 3px 5px;
+    color: #666;
+    font-size: 16px;
+    font-family: Verdana, helvetica, arial;
+    margin: 10px;
+}
+.livesLeft{
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: relative;
+    margin: 5px 15px 0 auto;
+}
+.livesLeft.livesLeft0{
+    width: 0px;
+    overflow: hidden;
+}
+.livesLeft.livesLeft1{
+     width: 40px;
+     overflow: hidden;
+ }
+.livesLeft.livesLeft2{
+    width: 80px;
+    overflow: hidden;
+}
+.livesLeft.livesLeft3{
+
+}
+.livesLeft img{
+    align-items: right;
+    width: 25px;
+    margin-left: 10px;
+}
+.spinner {
+    width: 50px;
+    height: 50px;
+}
+@keyframes spinner {
+    0% {
+        transform:  rotate(0deg);
+    }
+    100% {
+        transform:  rotate(360deg);
+    }
+}
+.spinner img{
+    width: 101px;
+    height: 101px;
+    animation: 2.0s linear infinite spinner;
+    animation-play-state: inherit;
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 50px);
+
+}
+.loading{
+    position: absolute;
+    top: calc(50% + 60px);
+    left: calc(50% - 40px);
+    text-align: center;
+    font-size: 21px;
+    font-family: Verdana;
+}
+.hidden{
+    display:none;
+}
+.playButton, .playAgainButton{
+    position: absolute;
+    cursor: pointer;
+}
+.playButton{
+    left: calc(100% - 170px);
+    width: 120px;
+    bottom: 8px;
+}
+.playAgainButton{
+    left: calc(100% - 200px);
+    width: 180px;
+    margin: 5px 15px 0 0;
+}
+.gameOver{
+    position:absolute;
+    top: calc(50% - 60px);
+    left: calc(50% - 145px);
+    width: 300px;
+}
+
